@@ -18,10 +18,16 @@ var rollbar = new Rollbar({
 rollbar.log('Hello world!')
 
 app.get("/", (req, res) => {
-    
-    rollbar.info("this is broken")
     res.sendFile(path.join(__dirname, "../index.html"))
 })
+
+app.get("/error", (req,res) => {
+    try {
+        fakeFunc()
+    } catch(err){
+        rollbar.info('This is an error')
+    }
+});
 
 
 const port = process.env.PORT || 4006;
