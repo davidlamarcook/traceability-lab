@@ -25,7 +25,7 @@ app.get("/error", (req,res) => {
     try {
         fakeFunc()
     } catch(err){
-        rollbar.info('This is an error')
+        rollbar.error('This is an error')
     }
 });
 
